@@ -22,7 +22,7 @@ public class FlowLayoutEx extends JFrame{
 	public void initData() {
 		setTitle("FlowLayout 연습");
 		setSize(500, 500);
-		setVisible(true);
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		button1 = new JButton("button1");
 		button2 = new JButton("button2");
@@ -30,15 +30,19 @@ public class FlowLayoutEx extends JFrame{
 		button4 = new JButton("button4");
 		button5 = new JButton("button5");
 		button6 = new JButton("button6");
-		
-		public void setInitLayout() {
-			setLayout(new FlowLayout(FlowLayout.LEFT, 10, 200));
-			add(button1);
-			add(button2);
-			add(button3);
-			add(button4);
-			add(button5);
-			add(button6);
-		}
+	}
+	public void setInitLayout() {
+		setLayout(new FlowLayout(FlowLayout.LEFT, 10, 200));
+		add(button1);
+		add(button2);
+		add(button3);
+		add(button4);
+		add(button5);
+		add(button6);
+		setVisible(true);
+	}
+	
+	public static void main(String[] args) {
+		new FlowLayoutEx();
 	}
 }
