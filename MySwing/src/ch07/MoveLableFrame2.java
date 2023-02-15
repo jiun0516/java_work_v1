@@ -5,31 +5,16 @@ import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 public class MoveLableFrame2 extends JFrame implements Moveable {
 
-	private int imagePanelX;
-	private int imagePanelY;
-	ImagePanel imagePanel;
-
-	static class ImagePanel extends JPanel {
-
-		private Image image;
-
-		public ImagePanel() {
-			image = new ImageIcon("images/image2.png").getImage();
-		}
-
-		@Override
-		public void paint(Graphics g) {
-			super.paint(g);
-			g.drawImage(image, 100, 100, 100, 100, null);
-		}
-	}
+	private JLabel image;
+	private int imageX = 100;
+	private int imageY = 100;
 
 	public MoveLableFrame2() {
 		initData();
@@ -41,12 +26,16 @@ public class MoveLableFrame2 extends JFrame implements Moveable {
 		setSize(800, 800);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
-		imagePanel = new ImagePanel();
+		Icon icon = new ImageIcon("images/image2.png");
+		image = new JLabel(icon);
+		image.setSize(100,100);
 	}
 
 	private void setInitLayout() {
-		add(imagePanel);
 		setVisible(true);
+		image.setLocation(300,350);
+		add(image);
+		setLayout(null);
 	}
 
 	private void addEventListener() {
@@ -82,41 +71,42 @@ public class MoveLableFrame2 extends JFrame implements Moveable {
 
 	@Override
 	public void right() {
-		int x = imagePanelX += 50;
-		if(x > 550) {
-			imagePanelX -= 50;
+		if (imageX < 650) {
+			int x = imageX += 50;
+			int y = imageY;
+			image.setLocation(x, y);
+			System.out.println(x);
 		}
-		int y = imagePanelY;
-		imagePanel.setLocation(x, y);
 	}
+	 
 
 	@Override
 	public void left() {
-		int x = imagePanelX -= 50;
-		if(x < 0) {
-			imagePanelX += 50;
+		if (imageX > 0) {
+			int x = imageX -= 50;
+			int y = imageY;
+			image.setLocation(x, y);
+			System.out.println(x);
 		}
-		int y = imagePanelY;
-		imagePanel.setLocation(x, y);
 	}
 
 	@Override
 	public void up() {
-		int y = imagePanelY -= 50;
-		if(y < 0) {
-			imagePanelY += 50;
+		if (imageY > 0) {
+			int y = imageY -= 50;
+			int x = imageX;
+			image.setLocation(x, y);
+			System.out.println(y);
 		}
-		int x = imagePanelX;
-		imagePanel.setLocation(x, y);
 	}
 
 	@Override
 	public void down() {
-		int y = imagePanelY += 50;
-		if(y > 550) {
-			imagePanelY -= 50;
+		if (imageY < 650) {
+			int y = imageY += 50;
+			int x = imageX;
+			image.setLocation(x, y);
+			System.out.println(y);
 		}
-		int x = imagePanelX;
-		imagePanel.setLocation(x, y);
 	}
 }
