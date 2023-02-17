@@ -14,8 +14,15 @@ public class RunableTest1 {
 		// subWorker.start(); <-- 현재 start 메서드가 없다. !!!
 		// subWorker 기능을 구현 했지 Thread 상속 받은 것은 아니다. 그래서
 		// Thread 기능인 start 메소드가 없는 상태이다.
+	
+		// 생각하는 방법 -- start() 메서드는 thread 가지고 있다.
+		// 쓰레드를 생성할 때 생성자에 runnable 타입을 넣을 수 있다고 확인 - 문서, 코드 힌트
+		Thread thread1 = new Thread(subWorker);
+		Thread thread2 = new Thread(subWorker);
 		
-		
+		// 시작 시점은 이벤트를 받던지 연산 후에 하던지 여러분들이 실행 시킬 수 있다
+		thread1.start();
+		thread2.start();
 
 	}// end of main
 
