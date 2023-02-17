@@ -20,7 +20,6 @@ public class BankAccount {
 			// 10만원 ....>
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		setMoney(currentMoney + money);
