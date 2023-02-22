@@ -1,9 +1,11 @@
-package ex07;
+package ex08;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class Player extends JLabel implements Moveable {
+	
+	BubbleFrame mContext;
 
 	private int x;
 	private int y;
@@ -28,7 +30,8 @@ public class Player extends JLabel implements Moveable {
 
 	// setter 메서드 만들기 left, right
 
-	public Player() {
+	public Player(BubbleFrame mContext) {
+		this.mContext = mContext;
 		initData();
 		setInitLayout();
 	}
@@ -198,9 +201,13 @@ public class Player extends JLabel implements Moveable {
 					}
 				} // end of while
 				down = false;
-
 			}
 		}).start();
+	}
+	
+	public void attack() {
+		Bubble bubble = new Bubble(this);
+		mContext.add(bubble);
 	}
 
 }

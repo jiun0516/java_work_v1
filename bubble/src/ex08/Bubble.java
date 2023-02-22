@@ -1,4 +1,4 @@
-package ex07;
+package ex08;
 
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -74,7 +74,7 @@ public class Bubble extends JLabel implements Moveable {
 			x--;
 			setLocation(x, y);
 			// 체크 왼쪽 벽이야? --> break;
-			System.out.println(backgroundBubbleService.leftWall());
+		
 			if(backgroundBubbleService.leftWall()) {
 				break;
 			}
@@ -85,6 +85,7 @@ public class Bubble extends JLabel implements Moveable {
 				e.printStackTrace();
 			}
 		}// end of for
+		
 		up();
 
 	}
@@ -95,7 +96,6 @@ public class Bubble extends JLabel implements Moveable {
 		for (int i = 0; i < 400; i++) {
 			x++;
 			setLocation(x, y);
-			System.out.println(backgroundBubbleService.rightWall());
 			if(backgroundBubbleService.rightWall()) {
 				break;
 			}
@@ -110,7 +110,6 @@ public class Bubble extends JLabel implements Moveable {
 
 	@Override
 	public void up() {
-		System.out.println("111111111111111");
 		up = true;
 		while(true) {
 			y--;
@@ -125,8 +124,20 @@ public class Bubble extends JLabel implements Moveable {
 				e.printStackTrace();
 			}
 		}
+		clearBubble();
+	}
+	
+	private void clearBubble() {
+		try {
+			Thread.sleep(3000);
+			setIcon(bomb);
+			Thread.sleep(500);
+			setIcon(null);
+			// 터진 다음에 0.5초 다음에 그림을 지우기
+			// repaint();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
-	
-	
 }
